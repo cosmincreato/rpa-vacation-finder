@@ -99,7 +99,7 @@
       <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="904,502.8566666666667" sap2010:WorkflowViewState.IdRef="Sequence_10">
+  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="914,512.4566666666667" sap2010:WorkflowViewState.IdRef="Sequence_10">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="Sum" />
       <Variable x:TypeArguments="x:Int32" Name="SecondNumber" />
