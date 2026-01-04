@@ -1,20 +1,22 @@
-# --- UiPath Temporary Files ---
+# --- UiPath Temporary & Metadata Files ---
 .local/
 .objects/
 .screenshots/
 .settings/
+.storage/
 .tmh/
+.entities/
 
-# --- Project dependencies ---
-# Nu urca folderul de pachete (se descarcă automat la deschidere)
+# --- Project Dependencies ---
 .nuget/
 packages/
 
-# --- Backup and Temp ---
+# --- User Specific & Layout Settings ---
+project.settings
+*.user
+
+# --- Backup and Runtime Logs ---
 *.tmp
 *.log
 backup/
-
-# --- User specific settings ---
-# Aici se stochează ce fișiere ai tu deschise acum în Studio
-project.settings
+.logs/
