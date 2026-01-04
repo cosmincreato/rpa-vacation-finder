@@ -4,7 +4,7 @@
   "description": "Main Process",
   "main": "Main.xaml",
   "dependencies": {
-    "UiPath.System.Activities": "[25.10.4]",
+    "UiPath.System.Activities": "[25.10.5]",
     "UiPath.UIAutomation.Activities": "[25.10.22]"
   },
   "webServices": [],
