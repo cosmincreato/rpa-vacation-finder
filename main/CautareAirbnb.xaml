@@ -1,5 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Sequence" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="in_PeopleCount" Type="InArgument(x:Int32)" />
     <x:Property Name="in_Destination" Type="InArgument(x:String)" />
     <x:Property Name="in_CheckOutDate" Type="InArgument(s:DateTime)" />
     <x:Property Name="in_CheckInDate" Type="InArgument(s:DateTime)" />
@@ -121,23 +122,19 @@
       <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="1211,932" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="1211,1336" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:DateTime" Default="[new DateTime(2026, 5, 10, 0, 0, 0)]" Name="CheckOutDate" />
       <Variable x:TypeArguments="s:DateTime" Default="[new DateTime(2026, 4, 15, 0, 0, 0)]" Name="CheckInDate" />
       <Variable x:TypeArguments="x:String" Default="Pitesti" Name="Destination" />
-      <Variable x:TypeArguments="x:Int32" Name="PeopleCount">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Int32" Value="4" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Int32" Default="4" Name="PeopleCount" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="520,211" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="522,242" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -164,23 +161,31 @@
               <InArgument x:TypeArguments="x:String">[in_Destination]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:Int32">[PeopleCount]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:Int32">[in_PeopleCount]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <Sequence DisplayName="Sequence Cautare Airbnb" sap:VirtualizedContainerService.HintSize="520,698" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Sequence Cautare Airbnb" sap:VirtualizedContainerService.HintSize="522,1071" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Open Airbnb" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="486,615" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V2" WindowResize="Maximize">
+      <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Open Airbnb" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,988" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V2" WindowResize="Maximize">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484,421" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,794" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="FormattedCheckOutDate" />
                 <Variable x:TypeArguments="x:String" Name="FormattedCheckInDate" />
@@ -192,7 +197,7 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="[UiPath.UIAutomationNext.Enums.NClickMode.Double]" ClipboardMode="Never" DisplayName="Type Into Destination" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="450,61" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Text="[Destination]" Version="V5">
+              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="[UiPath.UIAutomationNext.Enums.NClickMode.Double]" ClipboardMode="Never" DisplayName="Type Into Destination" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Text="[Destination]" Version="V5">
                 <uix:NTypeInto.Target>
                   <uix:TargetAnchorable BrowserURL="airbnb.com.ro" CVScreenId="0b61a658-42ff-4071-9ad4-b34ddeb3d7c3" ContentHash="toEE4w0ceEWS3Oxp6KCRcA" CvTextArea="932, 575, 255, 40" CvTextArgument="Caută destinații" CvType="Text" DesignTimeRectangle="934, 571, 540, 45" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='bigsearch-query-location-input' tag='INPUT' /&gt;" Guid="6d8c92f9-65dc-4ea5-9191-1efea4654388" InformativeScreenshot="ddb65d8a9ddbf768d92221bdb59c14f9.png" Reference="P20ThvbG-0ewLUzVSFjhNw/LfnBQlFgIEeL8b0g2a4CbQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Airbnb | Case de vacanță, cabane, case pe plajă și multe altele' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NTypeInto.Target>
@@ -203,7 +208,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NTypeInto>
-              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Date" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="450,61" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Date" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="airbnb.com.ro" ContentHash="qHTK6oFkPEeVdQ1ev5dymQ" DesignTimeRectangle="1567, 488, 700, 165" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;header&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='4' parentid='react-application' tag='DIV' /&gt;" Guid="72eb39f1-1bb1-49e5-ad98-4f7cf0f70cfd" InformativeScreenshot="eec42600419f1673974cb22951db4b50.png" Reference="P20ThvbG-0ewLUzVSFjhNw/TpiFHNGFcUqspEEgarz8Rw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Airbnb | Case de vacanță, cabane, case pe plajă și multe altele' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
@@ -214,7 +219,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NClick>
-              <Sequence DisplayName="Sequence Assign Date Variables" sap:VirtualizedContainerService.HintSize="450,61" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence DisplayName="Sequence Assign Date Variables" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="Sequence_5">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -238,7 +243,7 @@
                   </Assign.Value>
                 </Assign>
               </Sequence>
-              <Sequence DisplayName="Sequence Select Correct Check In Date" sap:VirtualizedContainerService.HintSize="450,61" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence DisplayName="Sequence Select Correct Check In Date" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="Sequence_6">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="CalendarCheckInDate" />
                 </Sequence.Variables>
@@ -324,7 +329,7 @@
                   </sap:WorkflowViewStateService.ViewState>
                 </uix:NClick>
               </Sequence>
-              <Sequence DisplayName="Sequence Select Correct Check Out Date" sap:VirtualizedContainerService.HintSize="450,61" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence DisplayName="Sequence Select Correct Check Out Date" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="Sequence_14">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="CalendarCheckOutDate" />
                 </Sequence.Variables>
@@ -404,7 +409,7 @@
                   </uix:NClick.Target>
                 </uix:NClick>
               </Sequence>
-              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click People Count" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,60.8" sap2010:WorkflowViewState.IdRef="NClick_18" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V5">
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click People Count" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="NClick_18" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V5">
                 <uix:NClick.Target>
                   <uix:TargetAnchorable BrowserURL="airbnb.com.ro" CVScreenId="ba330007-59ae-4020-a905-f1e73e03cc91" ContentHash="za8R_v-WIECrx5IOf5QQHw" CvTextArea="2335, 575, 257, 40" CvTextArgument="Adaugă oaspeți" CvType="Text" DesignTimeRectangle="2340, 571, 333, 45" ElementType="Text" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl aaname='Adaugă oaspeți' parentid='react-application' tag='DIV' /&gt;" Guid="65a841af-cfbe-4c5c-b5b6-caaca0d2d8cc" InformativeScreenshot="2c6d63920f79eb1d9ed8822d07e68628.png" Reference="P20ThvbG-0ewLUzVSFjhNw/G7CnqsvIik-kaAZ_j3s9Tg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Airbnb | Case de vacanță, cabane, case pe plajă și multe altele' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
                 </uix:NClick.Target>
@@ -415,15 +420,15 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uix:NClick>
-              <ui:InterruptibleWhile CurrentIndex="{x:Null}" DisplayName="While People Count" sap:VirtualizedContainerService.HintSize="452,312" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_5">
+              <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[PeopleCount &gt; 0]" DisplayName="While People Count" sap:VirtualizedContainerService.HintSize="452,312" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_5">
                 <ui:InterruptibleWhile.Body>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,176.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="Sequence_17">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Add Person" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,60.8" sap2010:WorkflowViewState.IdRef="NClick_19" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V5">
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Add Person" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,61" sap2010:WorkflowViewState.IdRef="NClick_19" InteractionMode="SameAsCard" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V5">
                       <uix:NClick.Target>
                         <uix:TargetAnchorable BrowserURL="airbnb.com.ro" CVScreenId="c7f6c42c-dbec-46a0-a642-5c54b9bb1145" ContentHash="SaUqHCIXq0a__AZ-qVBzYg" CvElementArea="2748, 789, 94, 91" CvType="Icon" DesignTimeRectangle="2770, 808, 55, 55" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;header&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;button&amp;gt;span' idx='2' parentid='stepper-adults' tag='SPAN' /&gt;" Guid="48e3ff21-8f06-4f30-ae87-0ba1f4276873" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADsAAAA7CAYAAADFJfKzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAJOgAACToAYJjBRwAAAEuSURBVGhD7dvBqYQwFIXh1GsXVmAPVuDWCnSvIigKghbgymWGKyTEwMATyX3jzfkhMJlEzLdxpUo7TdOki6I4R13X+jgOd/nno/PSuY2BPG7K/Oj73m7quu6y6W3R+Y2FXKYT2zSNXZzn2b3utZHDmMhHqbZt7Z/ruvrXvDryGBs5lZls2+bvFRG5jPHELsvi7xEV+U7sOI7+msjIaZ/GMQSs1ICVGrBSA1ZqwEqNFVtVlU6SxA6acwZsqIBlDNhQAcsYsKECljFg71SWpc6y7E8jTdMLlub+nm+D7vO0x9g8zy+AUIPu8zRg7xQV9k6vf0DdCVjGgA0VsIwBGypgGQM2VFFh933XwzDYQXPOWLH/HbBSA1ZqwEoNWKnFhY3q5eqoXpuP6oOImD51+QD9/8YeiutoSAAAAABJRU5ErkJggg==" InformativeScreenshot="3a7e2cde69dc2ab231e3ad3316dc50b2.png" Reference="P20ThvbG-0ewLUzVSFjhNw/HG1qAFXKAU6qcyDkgUamPw" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Airbnb | Case de vacanță, cabane, case pe plajă și multe altele' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
                       </uix:NClick.Target>
@@ -450,9 +455,6 @@
                     </Assign>
                   </Sequence>
                 </ui:InterruptibleWhile.Body>
-                <ui:InterruptibleWhile.Condition>
-                  <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="PeopleCount &gt; 0" />
-                </ui:InterruptibleWhile.Condition>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
