@@ -44,6 +44,7 @@
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CF8F34ACD39_v2_sub_chat_sub_completion_Create.Bundle</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -106,7 +107,7 @@
       <AssemblyReference>CF8F34ACD39_v2_sub_c.KClbR4bEOJP1eTbuuyo5ym2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="IntegrationReadAndSearch" sap:VirtualizedContainerService.HintSize="1316,1123" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="IntegrationReadAndSearch" sap:VirtualizedContainerService.HintSize="1121,1444" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="LocationsTable" />
     </Sequence.Variables>
@@ -120,19 +121,19 @@
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_LocationsTable">[LocationsTable]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[LocationsTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="488,918" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[LocationsTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="488,1239" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,745" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,1066" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="CautareAirbnb - Invoke Workflow File (CautareAirbnb.xaml)" sap:VirtualizedContainerService.HintSize="452,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CautareAirbnb.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="CautareAirbnb - Invoke Workflow File (CautareAirbnb.xaml)" sap:VirtualizedContainerService.HintSize="452,182" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CautareAirbnb.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="x:Int32" x:Key="in_PeopleCount">[CInt(CurrentRow("NumberOfGuests"))]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="in_Destination">[CurrentRow("CityName").ToString]</InArgument>
@@ -140,14 +141,20 @@
                 <InArgument x:TypeArguments="s:DateTime" x:Key="in_CheckInDate">[DirectCast(CurrentRow("CheckInDate"), DateTime)]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
+            <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="452,127" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataScrapperFinal - Invoke Workflow File (DataScrapperFinal.xaml)" sap:VirtualizedContainerService.HintSize="452,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="DataScrapperFinal.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_NumeOras">[CurrentRow("CityName").ToString()]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
             <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="452,127" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="okk" />
-            <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Open Airbnb" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,368" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.Never]" ScopeGuid="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V2" WindowResize="Maximize">
+            <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Open Airbnb" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,380" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.Never]" ScopeGuid="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V2" WindowResize="Maximize">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" Name="FormattedCheckOutDate" />
                       <Variable x:TypeArguments="x:String" Name="FormattedCheckInDate" />
@@ -159,7 +166,7 @@
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uix:NGoToUrl DisplayName="Go To URL - airbnb.com.ro" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Url="https://www.airbnb.com.ro/" Version="V5" />
+                    <uix:NGoToUrl DisplayName="Go To URL - airbnb.com.ro" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Url="https://www.airbnb.com.ro/" Version="V5" />
                   </Sequence>
                 </ActivityAction>
               </uix:NApplicationCard.Body>
