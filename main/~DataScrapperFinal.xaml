@@ -115,9 +115,10 @@
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>GlobalVariablesT1PNoYwrqg</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DataScrapper" sap:VirtualizedContainerService.HintSize="1121,4775" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DataScrapper" sap:VirtualizedContainerService.HintSize="1121,3696" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="out_ExtractedData" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_Results" />
@@ -342,26 +343,6 @@
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <ui:FilterDataTable DataTable="[out_ExtractedData]" DisplayName="Filter Data Table" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="488,195" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[out_ExtractedData]" SelectColumnsMode="Keep">
-      <ui:FilterDataTable.Filters>
-        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-          <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
-            <ui:FilterOperationArgument.Column>
-              <InArgument x:TypeArguments="x:String">["Titlu"]</InArgument>
-            </ui:FilterOperationArgument.Column>
-          </ui:FilterOperationArgument>
-        </scg:List>
-      </ui:FilterDataTable.Filters>
-      <ui:FilterDataTable.SelectColumns>
-        <scg:List x:TypeArguments="InArgument" Capacity="4">
-          <x:Null />
-        </scg:List>
-      </ui:FilterDataTable.SelectColumns>
-    </ui:FilterDataTable>
-    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="AnuntCazare" DataTable="[out_ExtractedData]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="488,221" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_1" />
-    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="PretCazare" DataTable="[out_ExtractedData]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="488,221" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_2" />
-    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="LinkCazare" DataTable="[out_ExtractedData]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="488,221" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_3" />
-    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="ImagineCazare" DataTable="[out_ExtractedData]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="488,221" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_4" />
     <ui:WriteRange StartingCell="{x:Null}" WorkbookPathResource="{x:Null}" DataTable="[out_ExtractedData]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="488,139" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="Cazari" WorkbookPath="[&quot;Rezultate_&quot; + in_NumeOras +&quot;.xlsx&quot;]" />
   </Sequence>
 </Activity>
