@@ -20,3 +20,5 @@ project.settings
 *.log
 backup/
 .logs/
+main/Rezultate_Barcelona.xlsx
+*.xlsx
