@@ -1,5 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="DataScrapper" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd2="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="out_rezultate" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="in_NumeOras" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
@@ -115,9 +116,11 @@
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DataScrapper" sap:VirtualizedContainerService.HintSize="1121,4775" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DataScrapper" sap:VirtualizedContainerService.HintSize="1183,4970" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="out_ExtractedData" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_Results" />
@@ -196,13 +199,13 @@
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[out_ExtractedData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="488,2552" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[out_ExtractedData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="488,2572" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,2370" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,2390" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <Sequence.Variables>
               <Variable x:TypeArguments="str:Match" Name="matchRating" />
               <Variable x:TypeArguments="s:String[]" Name="liniiText" />
@@ -242,7 +245,7 @@
          .FirstOrDefault()]</InArgument>
               </Assign.Value>
             </Assign>
-            <If Condition="[String.IsNullOrEmpty(CurrentRow(&quot;Titlu&quot;).ToString) Or IsNumeric(CurrentRow(&quot;Titlu&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="452,467" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[String.IsNullOrEmpty(CurrentRow(&quot;Titlu&quot;).ToString) Or IsNumeric(CurrentRow(&quot;Titlu&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="452,471" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
                 <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_8">
                   <sap:WorkflowViewStateService.ViewState>
@@ -270,7 +273,7 @@
                 </Sequence>
               </If.Else>
             </If>
-            <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_11">
+            <Assign sap:VirtualizedContainerService.HintSize="452,179" sap2010:WorkflowViewState.IdRef="Assign_11">
               <Assign.To>
                 <OutArgument x:TypeArguments="str:Match">[matchRating]</OutArgument>
               </Assign.To>
@@ -278,9 +281,9 @@
                 <InArgument x:TypeArguments="str:Match">[System.Text.RegularExpressions.Regex.Match(textBrut, "\b[3-5][\.,]\d{1,2}\b")]</InArgument>
               </Assign.Value>
             </Assign>
-            <If Condition="[matchRating.Success]" sap:VirtualizedContainerService.HintSize="452,599" sap2010:WorkflowViewState.IdRef="If_2">
+            <If Condition="[matchRating.Success]" sap:VirtualizedContainerService.HintSize="452,611" sap2010:WorkflowViewState.IdRef="If_2">
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,230" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_10">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -297,7 +300,7 @@
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,230" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_11">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -362,6 +365,14 @@
     <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="PretCazare" DataTable="[out_ExtractedData]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="488,221" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_2" />
     <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="LinkCazare" DataTable="[out_ExtractedData]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="488,221" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_3" />
     <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="ImagineCazare" DataTable="[out_ExtractedData]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="488,221" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_4" />
-    <ui:WriteRange StartingCell="{x:Null}" WorkbookPathResource="{x:Null}" DataTable="[out_ExtractedData]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="488,139" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="Cazari" WorkbookPath="[&quot;Rezultate_&quot; + in_NumeOras +&quot;.xlsx&quot;]" />
+    <ui:WriteRange StartingCell="{x:Null}" WorkbookPathResource="{x:Null}" DataTable="[out_ExtractedData]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="488,148" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="Cazari" WorkbookPath="[&quot;Rezultate_&quot; + in_NumeOras +&quot;.xlsx&quot;]" />
+    <Assign sap:VirtualizedContainerService.HintSize="488,166" sap2010:WorkflowViewState.IdRef="Assign_13">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[out_rezultate]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[out_ExtractedData]</InArgument>
+      </Assign.Value>
+    </Assign>
   </Sequence>
 </Activity>
