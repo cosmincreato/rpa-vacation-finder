@@ -125,7 +125,7 @@
       <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="1474,2577" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="1312,2984" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:DateTime" Default="[new DateTime(2026, 5, 10, 0, 0, 0)]" Name="CheckOutDate" />
       <Variable x:TypeArguments="s:DateTime" Default="[new DateTime(2026, 4, 15, 0, 0, 0)]" Name="CheckInDate" />
@@ -202,20 +202,41 @@
         </Sequence>
       </If.Else>
     </If>
-    <Sequence DisplayName="Sequence Cautare Airbnb" sap:VirtualizedContainerService.HintSize="522,1897" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <If Condition="[CheckInDate.Date &lt; DateTime.Now.Date]" sap:VirtualizedContainerService.HintSize="522,415" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_22">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw Exception="[New BusinessRuleException(&quot;Data de Check-In este in trecut. Nu se poate efectua cautarea. Trecem la urmatorul oras.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_3" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_23">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <Sequence DisplayName="Sequence Cautare Airbnb" sap:VirtualizedContainerService.HintSize="522,1889" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Open Airbnb" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,1814" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V2" WindowResize="Maximize">
+      <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Open Airbnb" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,1806" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V2" WindowResize="Maximize">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,1620" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,1612" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="FormattedCheckOutDate" />
                 <Variable x:TypeArguments="x:String" Name="FormattedCheckInDate" />
@@ -227,25 +248,25 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <uix:NCheckState DisplayName="Check App State 'A '" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,826" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Timeout="5" Version="V5">
+              <uix:NCheckState DisplayName="Check App State 'A '" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,818" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Timeout="5" Version="V5">
                 <uix:NCheckState.IfExists>
-                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,230" sap2010:WorkflowViewState.IdRef="Sequence_18">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;S-a incarcat pagina principala&quot;]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;S-a incarcat pagina principala&quot;]" />
                   </Sequence>
                 </uix:NCheckState.IfExists>
                 <uix:NCheckState.IfNotExists>
-                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,294" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,290" sap2010:WorkflowViewState.IdRef="Sequence_19">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Throw Exception="[New System.Exception(&quot;Pagina Airbnb nu s-a incarcat corect. Elementul cheie nu a fost gasit.&quot;)]" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                    <uix:NGoToUrl DisplayName="Go To URL - airbnb.com.ro" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Url="https://www.airbnb.com.ro/" Version="V5" />
                     <ui:Comment sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Comment_1" Text="de adaugat tratarea efectiva a exceptiei, adica de exemplu retry, reload page whatever kms&#xA;" />
                   </Sequence>
                 </uix:NCheckState.IfNotExists>
