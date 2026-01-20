@@ -124,7 +124,7 @@
       <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="1316,1336" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="773,2880" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:DateTime" Default="[new DateTime(2026, 5, 10, 0, 0, 0)]" Name="CheckOutDate" />
       <Variable x:TypeArguments="s:DateTime" Default="[new DateTime(2026, 4, 15, 0, 0, 0)]" Name="CheckInDate" />
@@ -174,20 +174,62 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <Sequence DisplayName="Sequence Cautare Airbnb" sap:VirtualizedContainerService.HintSize="522,1071" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <If Condition="[CheckInDate &gt;= CheckOutDate]" sap:VirtualizedContainerService.HintSize="522,415" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_18">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw Exception="[New BusinessRuleException(&quot;Data de check-in e dupa data de check-out.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_19">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <If Condition="[CheckInDate.Date &lt; DateTime.Now.Date]" sap:VirtualizedContainerService.HintSize="522,415" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_20">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw Exception="[New BusinessRuleException(&quot;Data de Check-In este in trecut. Nu se poate efectua cautarea. Trecem la urmatorul oras.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_2" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_21">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <Sequence DisplayName="Sequence Cautare Airbnb" sap:VirtualizedContainerService.HintSize="522,1785" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Open Airbnb" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,988" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V2" WindowResize="Maximize">
+      <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Open Airbnb" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,1702" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.IfNotOpen]" ScopeGuid="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Version="V2" WindowResize="Maximize">
         <uix:NApplicationCard.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,794" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,1508" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="FormattedCheckOutDate" />
                 <Variable x:TypeArguments="x:String" Name="FormattedCheckInDate" />
@@ -199,6 +241,31 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
+              <uix:NCheckState DisplayName="Check App State 'A '" HealingAgentBehavior="Disabled" sap:VirtualizedContainerService.HintSize="452,714" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Timeout="5" Version="V5">
+                <uix:NCheckState.IfExists>
+                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;S-a incarcat pagina principala&quot;]" />
+                  </Sequence>
+                </uix:NCheckState.IfExists>
+                <uix:NCheckState.IfNotExists>
+                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NGoToUrl DisplayName="Go To URL - airbnb.com.ro" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="NGoToUrl_1" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Url="https://www.airbnb.com.ro/" Version="V5" />
+                  </Sequence>
+                </uix:NCheckState.IfNotExists>
+                <uix:NCheckState.Target>
+                  <uix:TargetAnchorable BrowserURL="airbnb.com.ro" ContentHash="EPCpPkk9RU2vuWI7dyhB1g" DesignTimeRectangle="536, 231, 280, 66" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;header&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='react-application' tag='DIV' /&gt;" Guid="477d5e50-5a95-444d-a82c-239fa4f91353" InformativeScreenshot="eafc521b6d1086956033393ebcd96837.png" Reference="wmKqSfmfzUKUSORDtMZ5qQ/2DP4a10uhE6NZOOnyB_xYg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Airbnb | Case de vacanță, cabane, case pe plajă și multe altele' /&gt;" SearchSteps="Selector" Version="V6" WaitForReadyArgument="Interactive" />
+                </uix:NCheckState.Target>
+              </uix:NCheckState>
               <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="[UiPath.UIAutomationNext.Enums.NClickMode.Double]" ClipboardMode="Never" DisplayName="Type Into Destination" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="SameAsCard" ScopeIdentifier="fbde825f-e9a8-4387-aac3-6b3158d1e0a8" Text="[Destination]" Version="V5">
                 <uix:NTypeInto.Target>
                   <uix:TargetAnchorable BrowserURL="airbnb.com.ro" CVScreenId="0b61a658-42ff-4071-9ad4-b34ddeb3d7c3" ContentHash="toEE4w0ceEWS3Oxp6KCRcA" CvTextArea="932, 575, 255, 40" CvTextArgument="Caută destinații" CvType="Text" DesignTimeRectangle="934, 571, 540, 45" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='bigsearch-query-location-input' tag='INPUT' /&gt;" Guid="6d8c92f9-65dc-4ea5-9191-1efea4654388" InformativeScreenshot="ddb65d8a9ddbf768d92221bdb59c14f9.png" Reference="P20ThvbG-0ewLUzVSFjhNw/LfnBQlFgIEeL8b0g2a4CbQ" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Airbnb | Case de vacanță, cabane, case pe plajă și multe altele' /&gt;" SearchSteps="Selector, CV" Version="V6" WaitForReadyArgument="Interactive" />
