@@ -125,7 +125,7 @@
       <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="1644,2162" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="1474,2577" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:DateTime" Default="[new DateTime(2026, 5, 10, 0, 0, 0)]" Name="CheckOutDate" />
       <Variable x:TypeArguments="s:DateTime" Default="[new DateTime(2026, 4, 15, 0, 0, 0)]" Name="CheckInDate" />
@@ -181,6 +181,27 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
+    <If Condition="[CheckInDate &gt;= CheckOutDate]" sap:VirtualizedContainerService.HintSize="522,415" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_20">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw Exception="[New BusinessRuleException(&quot;Data de check-in e dupa data de check-out.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_2" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_21">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
     <Sequence DisplayName="Sequence Cautare Airbnb" sap:VirtualizedContainerService.HintSize="522,1897" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -225,7 +246,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <Throw Exception="[New System.Exception(&quot;Pagina Airbnb nu s-a incarcat corect. Elementul cheie nu a fost gasit.&quot;)]" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="Throw_1" />
-                    <ui:Comment sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Comment_1" Text="de adaugat tratarea efectiva a exceptiei, adica de exemplu retry, reload page whatever kms&#xD;&#xA;" />
+                    <ui:Comment sap:VirtualizedContainerService.HintSize="416,103" sap2010:WorkflowViewState.IdRef="Comment_1" Text="de adaugat tratarea efectiva a exceptiei, adica de exemplu retry, reload page whatever kms&#xA;" />
                   </Sequence>
                 </uix:NCheckState.IfNotExists>
                 <uix:NCheckState.Target>
