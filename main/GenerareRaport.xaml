@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="GenerareRaport_Email" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GenerareRaport_Email" this:GenerareRaport_Email.in_NumeOras="Barcelona" this:GenerareRaport_Email.in_EmailDestinatar="istocsimona23@gmail.com" this:GenerareRaport_Email.in_dt_Cazari="[New System.Data.DataTable]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_NumeOras" Type="InArgument(x:String)" />
     <x:Property Name="in_EmailDestinatar" Type="InArgument(x:String)" />
@@ -65,6 +65,8 @@
       <x:String>UiPath.Platform.Activities</x:String>
       <x:String>UiPath.Platform</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>UiPath.PDF</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -138,12 +140,17 @@
       <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="GenerareRaport_Email" sap:VirtualizedContainerService.HintSize="1183,2955" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="GenerareRaport_Email" sap:VirtualizedContainerService.HintSize="524,3768.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="nrOferte" />
       <Variable x:TypeArguments="x:String" Name="MySecurePassword" />
+      <Variable x:TypeArguments="x:String" Name="orasExtras" />
+      <Variable x:TypeArguments="x:String" Name="nrOferteExtras" />
+      <Variable x:TypeArguments="x:String" Name="textPDF" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -151,9 +158,9 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Output Folder" sap:VirtualizedContainerService.HintSize="524,123" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="Data\Output" />
+    <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Output Folder" sap:VirtualizedContainerService.HintSize="524,124" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="Data\Output" />
     <ui:WriteRange StartingCell="{x:Null}" WorkbookPathResource="{x:Null}" DataTable="[in_dt_Cazari]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="524,148" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="Oferte" WorkbookPath="[&quot;Data\Output\Cazari_&quot; + in_NumeOras + &quot;.xlsx&quot;]" />
-    <Assign sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap:VirtualizedContainerService.HintSize="524,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[nrOferte]</OutArgument>
       </Assign.To>
@@ -161,13 +168,14 @@
         <InArgument x:TypeArguments="x:String">[in_dt_Cazari.Rows.Count.ToString]</InArgument>
       </Assign.Value>
     </Assign>
-    <p:WordApplicationScope SensitivityLabel="{x:Null}" DisplayName="Word Application Scope" FilePath="[&quot;Data\Output\Raport_&quot; + in_NumeOras + &quot;.docx&quot;]" sap:VirtualizedContainerService.HintSize="524,2000" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
+    <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="524,114" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[&quot;Data\Output\Raport_&quot; + in_NumeOras + &quot;.docx&quot;]" />
+    <p:WordApplicationScope SensitivityLabel="{x:Null}" DisplayName="Word Application Scope" FilePath="[&quot;Data\Output\Raport_&quot; + in_NumeOras + &quot;.docx&quot;]" sap:VirtualizedContainerService.HintSize="524,2025.3333333333333" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
       <p:WordApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WordDocument">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="522,1869" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="522,1893.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Int32" Name="rowIndex" />
             </Sequence.Variables>
@@ -176,10 +184,10 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <p:WordAppendText DisplayName="Append Text" sap:VirtualizedContainerService.HintSize="488,174" sap2010:WorkflowViewState.IdRef="WordAppendText_1" Text="[&quot;Raport Cazare pentru &quot; + in_NumeOras]" />
-            <p:WordAppendText DisplayName="Append Text" sap:VirtualizedContainerService.HintSize="488,174" sap2010:WorkflowViewState.IdRef="WordAppendText_2" Text="[&quot;Robotul a identificat un număr total de &quot; + nrOferte + &quot; oferte disponibile.&quot;]" />
-            <p:WordAppendText DisplayName="Append Text" sap:VirtualizedContainerService.HintSize="488,174" sap2010:WorkflowViewState.IdRef="WordAppendText_4" Text="Mai jos sunt cateva din cazarile gasite de noi:" />
-            <Assign sap:VirtualizedContainerService.HintSize="488,179" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <p:WordAppendText DisplayName="Append Text" sap:VirtualizedContainerService.HintSize="488,176" sap2010:WorkflowViewState.IdRef="WordAppendText_1" Text="[&quot;Raport Cazare pentru &quot; + in_NumeOras]" />
+            <p:WordAppendText DisplayName="Append Text" sap:VirtualizedContainerService.HintSize="488,176" sap2010:WorkflowViewState.IdRef="WordAppendText_2" Text="[&quot;Robotul a identificat un număr total de &quot; + nrOferte + &quot; oferte disponibile.&quot;]" />
+            <p:WordAppendText DisplayName="Append Text" sap:VirtualizedContainerService.HintSize="488,176" sap2010:WorkflowViewState.IdRef="WordAppendText_4" Text="Mai jos sunt cateva din cazarile gasite de noi:" />
+            <Assign sap:VirtualizedContainerService.HintSize="488,180.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[rowIndex]</OutArgument>
               </Assign.To>
@@ -187,19 +195,19 @@
                 <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_dt_Cazari]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="488,939" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_dt_Cazari]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="488,954" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,753" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,766" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign sap:VirtualizedContainerService.HintSize="452,179" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign sap:VirtualizedContainerService.HintSize="452,180.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_3">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Int32">[rowIndex]</OutArgument>
                       </Assign.To>
@@ -207,8 +215,8 @@
                         <InArgument x:TypeArguments="x:Int32">[rowIndex + 1]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <p:WordAppendText DisplayName="Append Text" sap:VirtualizedContainerService.HintSize="452,170" sap2010:WorkflowViewState.IdRef="WordAppendText_3" Text="[rowIndex.ToString &amp; &quot;. &quot; &amp; CurrentRow(&quot;link&quot;).ToString]" />
-                    <If Condition="[rowIndex &gt;= 5]" sap:VirtualizedContainerService.HintSize="452,344" sap2010:WorkflowViewState.IdRef="If_1">
+                    <p:WordAppendText DisplayName="Append Text" sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="WordAppendText_3" Text="[rowIndex.ToString &amp; &quot;. &quot; &amp; CurrentRow(&quot;link&quot;).ToString]" />
+                    <If Condition="[rowIndex &gt;= 5]" sap:VirtualizedContainerService.HintSize="452,345.3333333333333" sap2010:WorkflowViewState.IdRef="If_1">
                       <If.Then>
                         <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,116" sap2010:WorkflowViewState.IdRef="Sequence_4">
                           <sap:WorkflowViewStateService.ViewState>
@@ -220,7 +228,7 @@
                         </Sequence>
                       </If.Then>
                       <If.Else>
-                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_5">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -233,14 +241,34 @@
                 </ActivityAction>
               </ui:ForEachRow.Body>
             </ui:ForEachRow>
-            <p:WordExportToPdf DisplayName="Save Document as PDF" FilePath="[&quot;Data\Output\Raport_&quot; + in_NumeOras + &quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="488,165" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1" />
+            <p:WordExportToPdf DisplayName="Save Document as PDF" FilePath="Data\Output\raport.pdf" sap:VirtualizedContainerService.HintSize="488,166.66666666666666" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1" />
           </Sequence>
         </ActivityAction>
       </p:WordApplicationScope.Body>
     </p:WordApplicationScope>
-    <ui:GetPassword DisplayName="Get Password" sap:VirtualizedContainerService.HintSize="524,57" sap2010:WorkflowViewState.IdRef="GetPassword_2" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAANdxQfoW+q0GtgW48Xm4X9AAAAAACAAAAAAAQZgAAAAEAACAAAAB9vjkdAel8OrJ35bXxKoY4yo9BJejK3ty5LIEhDczXxgAAAAAOgAAAAAIAACAAAAAQCbNn1465u3LWAYbwllsIGa6oqgfadlvyQ4Mf5Tx+yCAAAACDj2K4c6doOCTFjpfdKFIpQmwGWa1EtPRZt0Sw/7EFLkAAAAC5WHM4tp6Jjc/QvIZecCmX19MNx01MYq9+XcqViEqddb5o685MimZ5+1SgyS0CmLag9k++i5Kyo0UFSO65q/zK" Result="[MySecurePassword]" />
-    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="488,123" sap2010:WorkflowViewState.IdRef="Delay_1" />
-    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" AttachmentInputMode="Builder" Body="Salut, atașat găsești lista cu cazările extrase și raportul sumar." ConnectionId="163a5449-4b45-435a-8795-3da246780273" ConnectionMode="LegacyConfiguration" ContinueOnError="False" DisplayName="Send SMTP Email" Email="zamfiralexandru1007@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="488,275" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Password="[MySecurePassword]" Port="587" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;Oferte cazare Airbnb pentru &quot; + in_NumeOras]" To="[in_EmailDestinatar]" UseISConnection="False" UseRichTextEditor="True">
+    <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Read PDF Text" FileName="Data\Output\raport.pdf" sap:VirtualizedContainerService.HintSize="524,116" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[textPDF]" />
+    <Assign sap:VirtualizedContainerService.HintSize="524,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[orasExtras]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="System.Text.RegularExpressions.Regex.Match(textPDF, &quot;(?&lt;=pentru\s).*&quot;).Value.Trim" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
+        </InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="524,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[nrOferteExtras]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(textPDF, "(?&lt;=total de\s)\d+").Value]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[&quot;Data\Output\Raport_&quot; + orasExtras + &quot;_&quot; + nrOferteExtras + &quot;.pdf&quot;]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="524,196.66666666666666" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True" Path="Data\Output\raport.pdf" />
+    <ui:GetPassword DisplayName="Get Password" sap:VirtualizedContainerService.HintSize="524,57.333333333333336" sap2010:WorkflowViewState.IdRef="GetPassword_2" ProtectedPassword="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAgvWv+xyM5Ui4/X+CuYdJPgAAAAACAAAAAAAQZgAAAAEAACAAAADDCLCpcQCQJEDG4CDqOzapFzPoOip7DLVjq4ZkUXBm7gAAAAAOgAAAAAIAACAAAABZBcxWXjeNEm85r1OncZzXKn1YvOwicsn7IHrAUXt1pSAAAACnJ9zBhGvZlR9cq75tPxcgfytH8xCItWWypgoxyTvwaEAAAADhJJGhxCHqSSoLNMDlaum5vWg17MX9L7a7GnDbJP9b3nhw0agsapa620jlCovq3pHfBpE6srKVARm22s66tBxR" Result="[MySecurePassword]" />
+    <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="524,124" sap2010:WorkflowViewState.IdRef="Delay_1" />
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" AttachmentInputMode="Builder" Body="Salut, atașat găsești lista cu cazările extrase și raportul sumar." ConnectionId="163a5449-4b45-435a-8795-3da246780273" ConnectionMode="LegacyConfiguration" ContinueOnError="False" DisplayName="Send SMTP Email" Email="istocsimona23@gmail.com" EnableSSL="True" sap:VirtualizedContainerService.HintSize="524,280" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Password="[MySecurePassword]" Port="587" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[&quot;Oferte cazare Airbnb pentru &quot; + in_NumeOras]" To="[in_EmailDestinatar]" UseISConnection="False" UseRichTextEditor="True">
       <ui:SendMail.AttachmentsBackup>
         <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="Builder">
           <usau:BackupSlot.BackupValues>
@@ -264,7 +292,7 @@
       </ui:SendMail.Files>
       <ui:SendMail.ResourceAttachmentList>
         <scg:List x:TypeArguments="InArgument(upr:IResource)" Capacity="4">
-          <InArgument x:TypeArguments="upr:IResource">[UiPath.Platform.ResourceHandling.LocalResource.FromPath(System.IO.Path.GetFullPath("Data\Output\Raport_" + in_NumeOras + ".pdf"))]</InArgument>
+          <InArgument x:TypeArguments="upr:IResource">[UiPath.Platform.ResourceHandling.LocalResource.FromPath(System.IO.Path.GetFullPath("Data\Output\Raport_" + orasExtras + "_" + nrOferteExtras + ".pdf"))]</InArgument>
           <InArgument x:TypeArguments="upr:IResource">[UiPath.Platform.ResourceHandling.LocalResource.FromPath(System.IO.Path.GetFullPath("Data\Output\Cazari_" + in_NumeOras + ".xlsx"))]</InArgument>
         </scg:List>
       </ui:SendMail.ResourceAttachmentList>
