@@ -105,9 +105,11 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
       <AssemblyReference>CF8F34ACD39_v2_sub_c.KClbR4bEOJP1eTbuuyo5ym2</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReadFromExcel" sap:VirtualizedContainerService.HintSize="773,1943" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReadFromExcel" sap:VirtualizedContainerService.HintSize="1178,1943" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="variable1" />
       <Variable x:TypeArguments="sd:DataTable" Name="excelTable" />
@@ -148,7 +150,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {&#xA;    CInt(CurrentRow(&quot;ID&quot;)),&#xA;    CurrentRow(&quot;CityName&quot;).ToString,&#xA;    CInt(CurrentRow(&quot;NumberOfGuests&quot;)),&#xA;    CurrentRow(&quot;CheckInDate&quot;),&#xA;    CurrentRow(&quot;CheckOutDate&quot;)&#xA;}]" DataTable="[out_LocationsTable]" DisplayName="Format the input" sap:VirtualizedContainerService.HintSize="416,216" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[New Object() {&#xD;&#xA;    CInt(CurrentRow(&quot;ID&quot;)),&#xD;&#xA;    CurrentRow(&quot;CityName&quot;).ToString,&#xD;&#xA;    CInt(CurrentRow(&quot;NumberOfGuests&quot;)),&#xD;&#xA;    CurrentRow(&quot;CheckInDate&quot;),&#xD;&#xA;    CurrentRow(&quot;CheckOutDate&quot;)&#xD;&#xA;}]" DataTable="[out_LocationsTable]" DisplayName="Format the input" sap:VirtualizedContainerService.HintSize="416,216" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>

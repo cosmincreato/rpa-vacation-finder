@@ -111,7 +111,7 @@
       <AssemblyReference>System.Linq.Async</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="IntegrationReadAndSearch" sap:VirtualizedContainerService.HintSize="1671,3330" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="IntegrationReadAndSearch" sap:VirtualizedContainerService.HintSize="1183,3369" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="extractedLocations" />
       <Variable x:TypeArguments="sd:DataTable" Name="LocationsTable" />
@@ -126,21 +126,21 @@
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_LocationsTable">[LocationsTable]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="560,3125" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="560,3164" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[LocationsTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="558,2606" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[LocationsTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="558,2645" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
           <ui:ForEachRow.Body>
             <ActivityAction x:TypeArguments="sd:DataRow">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="556,2456" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="556,2495" sap2010:WorkflowViewState.IdRef="Sequence_10">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="522,2392" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="522,2431" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -148,7 +148,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <TryCatch.Try>
-                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="520,1557" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="520,1596" sap2010:WorkflowViewState.IdRef="Sequence_4">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -180,27 +180,27 @@
                         </ui:RetryScope.Condition>
                       </ui:RetryScope>
                       <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="486,127" sap2010:WorkflowViewState.IdRef="Delay_2" />
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataScrapperFinal - Invoke Workflow File (DataScrapperFinal.xaml)" sap:VirtualizedContainerService.HintSize="486,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="DataScrapperFinal.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DataScrapperFinal - Invoke Workflow File (DataScrapperFinal.xaml)" sap:VirtualizedContainerService.HintSize="486,182" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="DataScrapperFinal.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_rezultate">[extractedLocations]</OutArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="in_NumeOras">[CurrentRow("CityName").ToString()]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
-                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,348" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GenerareRaport - Invoke Workflow File (GenerareRaport.xaml)" sap:VirtualizedContainerService.HintSize="486,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="GenerareRaport.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_NumeOras">[CurrentRow("CityName").ToString()]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_EmailDestinatar">zamfiralexandru1007@gmail.com</InArgument>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_Cazari">[extractedLocations]</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,205" sap2010:WorkflowViewState.IdRef="CommentOut_1">
                         <ui:CommentOut.Body>
-                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,233" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_13">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GenerareRaport - Invoke Workflow File (GenerareRaport.xaml)" sap:VirtualizedContainerService.HintSize="416,173" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="GenerareRaport.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_NumeOras">[CurrentRow("CityName").ToString()]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_EmailDestinatar">zamfiralexandru1007@gmail.com</InArgument>
-                                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_Cazari">[extractedLocations]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
                           </Sequence>
                         </ui:CommentOut.Body>
                       </ui:CommentOut>
